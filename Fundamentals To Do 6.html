@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentals To Do 6</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap; /* Allows wrapping of long text */
+        }
+    </style>
+</head>
+<body>
+    <h1>Fundamentals To Do 6</h1>
+    
+    <h2>Threes and Fives</h2>
+    <pre id="threesFivesResult"></pre>
+
+    <h2>Generate Coin Change</h2>
+    <pre id="coinChangeResult"></pre>
+
+    <h2>Messy Math Mashup</h2>
+    <pre id="messyMathResult"></pre>
+
+    <h2>Twelve-Bar Blues</h2>
+    <pre id="twelveBarBluesResult"></pre>
+
+    <h2>Fibonacci</h2>
+    <pre id="fibonacciResult"></pre>
+
+    <h2>Sum to One Digit</h2>
+    <pre id="sumToOneResult"></pre>
+
+    <h2>Clock Hand Angles</h2>
+    <pre id="clockHandAnglesResult"></pre>
+
+    <h2>Is Prime</h2>
+    <pre id="isPrimeResult"></pre>
+
+    <script>
+        // Threes and Fives
+        function threesFives() {
+            let sum = 0;
+            for (let i = 100; i <= 4000000; i++) {
+                if ((i % 3 === 0 || i % 5 === 0) && !(i % 3 === 0 && i % 5 === 0)) {
+                    sum += i;
+                }
+            }
+            return sum;
+        }
+
+        function betterThreesFives(start, end) {
+            let sum = 0;
+            for (let i = start; i <= end; i++) {
+                if ((i % 3 === 0 || i % 5 === 0) && !(i % 3 === 0 && i % 5 === 0)) {
+                    sum += i;
+                }
+            }
+            return sum;
+        }
+
+        // Generate Coin Change
+        function generateCoinChange(cents) {
+            const coins = {
+                quarters: 25,
+                dimes: 10,
+                nickels: 5,
+                pennies: 1
+            };
+            let result = {};
+            for (const coin in coins) {
+                result[coin] = Math.floor(cents / coins[coin]);
+                cents %= coins[coin];
+            }
+            return result;
+        }
+
+        // Messy Math Mashup
+        function messyMath(num) {
+            let sum = 0;
+            for (let i = 0; i <= num; i++) {
+                if (i === num / 3) return -1;
+                if (i % 3 !== 0) {
+                    sum += (i % 7 === 0) ? i * 2 : i;
+                }
+            }
+            return sum;
+        }
+
+        // Twelve-Bar Blues
+        function twelveBarBlues() {
+            let result = "";
+            for (let i = 1; i <= 12; i++) {
+                result += `${i}\nchick\nboom\nchick\n`;
+            }
+            return result;
+        }
+
+        // Fibonacci
+        function fibonacci(index) {
+            if (index <= 0) return 0;
+            if (index === 1) return 1;
+            let a = 0, b = 1, temp;
+            for (let i = 2; i <= index; i++) {
+                temp = a + b;
+                a = b;
+                b = temp;
+            }
+            return b;
+        }
+
+        // Sum to One Digit
+        function sumToOne(num) {
+            while (num >= 10) {
+                num = num.toString().split('').reduce((acc, digit) => acc + Number(digit), 0);
+            }
+            return num;
+        }
+
+        // Clock Hand Angles
+        function clockHandAngles(seconds) {
+            const hour = (360 / 43200) * seconds; // 360 degrees in 12 hours
+            const minute = (360 / 3600) * (seconds % 3600); // 360 degrees in 60 minutes
+            const second = (360 / 60) * (seconds % 60); // 360 degrees in 60 seconds
+            const weekHand = (360 / 604800) * seconds; // 360 degrees in 1 week
+            return `Hour hand: ${hour.toFixed(3)} degs. Minute hand: ${minute.toFixed(0)} degs. Second hand: ${second.toFixed(0)} degs. Week hand: ${weekHand.toFixed(3)} degs.`;
+        }
+
+        // Is Prime
+        function isPrime(num) {
+            if (num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        // Display results
+        document.getElementById('threesFivesResult').textContent = `Threes and Fives sum: ${threesFives()}`;
+        document.getElementById('coinChangeResult').textContent = JSON.stringify(generateCoinChange(94), null, 2);
+        document.getElementById('messyMathResult').textContent = `Messy Math result for 8: ${messyMath(8)}`;
+        document.getElementById('twelveBarBluesResult').textContent = twelveBarBlues();
+        document.getElementById('fibonacciResult').textContent = `Fibonacci of 7: ${fibonacci(7)}`;
+        document.getElementById('sumToOneResult').textContent = `Sum to one digit of 928: ${sumToOne(928)}`;
+        document.getElementById('clockHandAnglesResult').textContent = clockHandAngles(119730);
+        document.getElementById('isPrimeResult').textContent = `Is 29 prime? ${isPrime(29)}`;
+    </script>
+</body>
+</html>
