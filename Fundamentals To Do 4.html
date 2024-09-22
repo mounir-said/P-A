@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions - Fundamentals To Do 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .result {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Functions - Fundamentals To Do 4</h1>
+
+    <div class="result">
+        <button onclick="runLastFew()">Only Keep the Last Few</button>
+        <div id="lastFewResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runMathHelp()">Math Help</button>
+        <div id="mathHelpResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runWhatHappensToday()">Poor Kenny</button>
+        <div id="poorKennyResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runWhatReallyHappensToday()">What Really Happened?</button>
+        <div id="reallyHappenedResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runSoaringIQ()">Soaring IQ</button>
+        <div id="soaringIQResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runLetterGrade()">Letter Grade</button>
+        <div id="letterGradeResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runMoreAccurateGrades()">More Accurate Grades</button>
+        <div id="accurateGradesResult"></div>
+    </div>
+
+    <script>
+        // Only Keep the Last Few
+        function runLastFew() {
+            const result = onlyKeepLastFew([2, 4, 6, 8, 10], 3);
+            document.getElementById('lastFewResult').innerText = 'Result: ' + result;
+        }
+
+        function onlyKeepLastFew(arr, x) {
+            arr.length = x;
+            return arr;
+        }
+
+        // Math Help (X-Intercept)
+        function runMathHelp() {
+            const result = mathHelp(3, 5); // Example: M = 3, B = 5
+            document.getElementById('mathHelpResult').innerText = 'X-Intercept is: ' + result;
+        }
+
+        function mathHelp(m, b) {
+            return -b / m;
+        }
+
+        // Poor Kenny
+        function runWhatHappensToday() {
+            const result = whatHappensToday();
+            document.getElementById('poorKennyResult').innerText = 'Today\'s event: ' + result;
+        }
+
+        function whatHappensToday() {
+            const disasters = ['volcano', 'tsunami', 'earthquake', 'blizzard', 'meteor'];
+            const rand = Math.floor(Math.random() * 100);
+            if (rand < 10) return 'volcano';
+            else if (rand < 25) return 'tsunami';
+            else if (rand < 45) return 'earthquake';
+            else if (rand < 70) return 'blizzard';
+            else return 'meteor';
+        }
+
+        // What Really Happened?
+        function runWhatReallyHappensToday() {
+            const result = whatReallyHappensToday();
+            document.getElementById('reallyHappenedResult').innerText = 'Today\'s events: ' + result.join(', ');
+        }
+
+        function whatReallyHappensToday() {
+            const disasters = ['volcano', 'tsunami', 'earthquake', 'blizzard', 'meteor'];
+            const probabilities = [10, 15, 20, 25, 30]; // Percentage chances
+            const events = [];
+            disasters.forEach((disaster, i) => {
+                if (Math.random() * 100 < probabilities[i]) {
+                    events.push(disaster);
+                }
+            });
+            return events.length > 0 ? events : ['Nothing happened'];
+        }
+
+        // Soaring IQ
+        function runSoaringIQ() {
+            const result = soaringIQ(101, 98);
+            document.getElementById('soaringIQResult').innerText = 'Bogdan\'s final IQ is: ' + result;
+        }
+
+        function soaringIQ(startIQ, days) {
+            let iq = startIQ;
+            for (let i = 1; i <= days; i++) {
+                iq += i * 0.01;
+            }
+            return iq.toFixed(2);
+        }
+
+        // Letter Grade
+        function runLetterGrade() {
+            const result = letterGrade(88); // Example score: 88
+            document.getElementById('letterGradeResult').innerText = result;
+        }
+
+        function letterGrade(score) {
+            let grade;
+            if (score >= 90) grade = 'A';
+            else if (score >= 80) grade = 'B';
+            else if (score >= 70) grade = 'C';
+            else if (score >= 60) grade = 'D';
+            else grade = 'F';
+            return `Score: ${score}. Grade: ${grade}`;
+        }
+
+        // More Accurate Grades
+        function runMoreAccurateGrades() {
+            const result = moreAccurateGrades(88); // Example score: 88
+            document.getElementById('accurateGradesResult').innerText = result;
+        }
+
+        function moreAccurateGrades(score) {
+            let grade, sign = '';
+            if (score >= 90) grade = 'A';
+            else if (score >= 80) grade = 'B';
+            else if (score >= 70) grade = 'C';
+            else if (score >= 60) grade = 'D';
+            else grade = 'F';
+
+            if (grade !== 'A' && grade !== 'F') {
+                if (score % 10 <= 2) sign = '-';
+                else if (score % 10 >= 8) sign = '+';
+            }
+
+            return `Score: ${score}. Grade: ${grade}${sign}`;
+        }
+    </script>
+
+</body>
+</html>
