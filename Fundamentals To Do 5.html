@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentals To Do 5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap; /* Allows wrapping of long text */
+        }
+    </style>
+</head>
+<body>
+    <h1>Fundamentals To Do 5</h1>
+    
+    <h2>Sigma</h2>
+    <p>Sum of all positive integers up to a number:</p>
+    <pre id="sigmaResult"></pre>
+
+    <h2>Factorial</h2>
+    <p>Product of all positive integers up to a number:</p>
+    <pre id="factorialResult"></pre>
+
+    <h2>Star Art</h2>
+    <p>Left Justified Stars:</p>
+    <pre id="leftStars"></pre>
+    <p>Right Justified Stars:</p>
+    <pre id="rightStars"></pre>
+    <p>Centered Stars:</p>
+    <pre id="centeredStars"></pre>
+
+    <script>
+        function sigma(num) {
+            let sum = 0;
+            for (let i = 1; i <= num; i++) {
+                sum += i;
+            }
+            return sum;
+        }
+
+        function factorial(num) {
+            let product = 1;
+            for (let i = 1; i <= num; i++) {
+                product *= i;
+            }
+            return product;
+        }
+
+        function drawLeftStars(num) {
+            return '*'.repeat(num);
+        }
+
+        function drawRightStars(num) {
+            return ' '.repeat(75 - num) + '*'.repeat(num);
+        }
+
+        function drawCenteredStars(num) {
+            const spaces = Math.floor((75 - num) / 2);
+            return ' '.repeat(spaces) + '*'.repeat(num) + ' '.repeat(spaces);
+        }
+
+        // Character Art functions
+        function drawLeftChars(num, char) {
+            return char.repeat(num);
+        }
+
+        function drawRightChars(num, char) {
+            return ' '.repeat(75 - num) + char.repeat(num);
+        }
+
+        function drawCenteredChars(num, char) {
+            const spaces = Math.floor((75 - num) / 2);
+            return ' '.repeat(spaces) + char.repeat(num) + ' '.repeat(spaces);
+        }
+
+        // Display results
+        const sigmaResult = sigma(5); // Example for sigma
+        const factorialResult = factorial(5); // Example for factorial
+        document.getElementById('sigmaResult').textContent = `sigma(5) = ${sigmaResult}`;
+        document.getElementById('factorialResult').textContent = `factorial(5) = ${factorialResult}`;
+        document.getElementById('leftStars').textContent = drawLeftStars(10); // Example for left stars
+        document.getElementById('rightStars').textContent = drawRightStars(10); // Example for right stars
+        document.getElementById('centeredStars').textContent = drawCenteredStars(10); // Example for centered stars
+    </script>
+</body>
+</html>
