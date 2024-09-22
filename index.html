@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-bottom: 20px;
+        }
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            white-space: pre-wrap;
+        }
+        button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Functions Display</h1>
+
+    <div class="container">
+        <button onclick="settingAndSwapping()">Setting and Swapping</button>
+        <div class="output" id="output1"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="printNegativeToPositive()">Print -52 to 1066</button>
+        <div class="output" id="output2"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="beCheerful()">Don't Worry, Be Happy</button>
+        <div class="output" id="output3"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="multiplesOfThree()">Multiples of Three (Skip -3, -6)</button>
+        <div class="output" id="output4"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="printIntegersWhile()">Print Integers 2000 to 5280</button>
+        <div class="output" id="output5"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="checkBirthday(7, 15)">You Say It's Your Birthday</button>
+        <div class="output" id="output6"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="isLeapYear(2024)">Leap Year Check</button>
+        <div class="output" id="output7"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="printAndCount()">Print and Count Multiples of 5</button>
+        <div class="output" id="output8"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="multiplesOfSix()">Multiples of Six</button>
+        <div class="output" id="output9"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="countingDojoWay()">Counting, the Dojo Way</button>
+        <div class="output" id="output10"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="whatDoYouKnow('This is an example input!')">What Do You Know?</button>
+        <div class="output" id="output11"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="whoaHugeSum()">Whoa, That Sucker's Huge</button>
+        <div class="output" id="output12"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="countdownByFours()">Countdown by Fours</button>
+        <div class="output" id="output13"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="flexibleCountdown(2, 9, 3)">Flexible Countdown</button>
+        <div class="output" id="output14"></div>
+    </div>
+
+    <div class="container">
+        <button onclick="finalCountdown(3, 5, 17, 9)">The Final Countdown</button>
+        <div class="output" id="output15"></div>
+    </div>
+
+    <script>
+        function settingAndSwapping() {
+            let myNumber = 42;
+            let myName = "Mounir";
+            let temp = myNumber;
+            myNumber = myName;
+            myName = temp;
+            document.getElementById("output1").textContent = `myNumber: ${myNumber}, myName: ${myName}`;
+        }
+
+        function printNegativeToPositive() {
+            let output = '';
+            for (let i = -52; i <= 1066; i++) {
+                output += i + ' ';
+            }
+            document.getElementById("output2").textContent = output;
+        }
+
+        function beCheerful() {
+            let output = '';
+            for (let i = 0; i < 98; i++) {
+                output += "good morning!\n";
+            }
+            document.getElementById("output3").textContent = output;
+        }
+
+        function multiplesOfThree() {
+            let output = '';
+            for (let i = -300; i <= 0; i++) {
+                if (i % 3 === 0 && i !== -3 && i !== -6) {
+                    output += i + ' ';
+                }
+            }
+            document.getElementById("output4").textContent = output;
+        }
+
+        function printIntegersWhile() {
+            let output = '';
+            let i = 2000;
+            while (i <= 5280) {
+                output += i + ' ';
+                i++;
+            }
+            document.getElementById("output5").textContent = output;
+        }
+
+        function checkBirthday(month, day) {
+            const birthMonth = 7;
+            const birthDay = 15;
+            if ((month === birthMonth && day === birthDay) || (month === birthDay && day === birthMonth)) {
+                document.getElementById("output6").textContent = "How did you know?";
+            } else {
+                document.getElementById("output6").textContent = "Just another day....";
+            }
+        }
+
+        function isLeapYear(year) {
+            let result = (year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)) ? "Leap Year" : "Not a Leap Year";
+            document.getElementById("output7").textContent = result;
+        }
+
+        function printAndCount() {
+            let output = '';
+            let count = 0;
+            for (let i = 512; i <= 4096; i++) {
+                if (i % 5 === 0) {
+                    output += i + ' ';
+                    count++;
+                }
+            }
+            document.getElementById("output8").textContent = output + `\nTotal count: ${count}`;
+        }
+
+        function multiplesOfSix() {
+            let output = '';
+            let i = 6;
+            while (i <= 60000) {
+                if (i % 6 === 0) {
+                    output += i + ' ';
+                }
+                i++;
+            }
+            document.getElementById("output9").textContent = output;
+        }
+
+        function countingDojoWay() {
+            let output = '';
+            for (let i = 1; i <= 100; i++) {
+                if (i % 10 === 0) {
+                    output += "Coding Dojo\n";
+                } else if (i % 5 === 0) {
+                    output += "Coding\n";
+                } else {
+                    output += i + ' ';
+                }
+            }
+            document.getElementById("output10").textContent = output;
+        }
+
+        function whatDoYouKnow(incoming) {
+            document.getElementById("output11").textContent = incoming;
+        }
+
+        function whoaHugeSum() {
+            let sum = 0;
+            for (let i = -299999; i <= 299999; i += 2) {
+                sum += i;
+            }
+            document.getElementById("output12").textContent = "Final sum: " + sum;
+        }
+
+        function countdownByFours() {
+            let output = '';
+            let i = 2016;
+            while (i > 0) {
+                output += i + ' ';
+                i -= 4;
+            }
+            document.getElementById("output13").textContent = output;
+        }
+
+        function flexibleCountdown(lowNum, highNum, mult) {
+            let output = '';
+            for (let i = highNum; i >= lowNum; i--) {
+                if (i % mult === 0) {
+                    output += i + ' ';
+                }
+            }
+            document.getElementById("output14").textContent = output;
+        }
+
+        function finalCountdown(param1, param2, param3, param4) {
+            let output = '';
+            let i = param2;
+            while (i <= param3) {
+                if (i % param1 === 0 && i !== param4) {
+                    output += i + ' ';
+                }
+                i++;
+            }
+            document.getElementById("output15").textContent = output;
+        }
+    </script>
+
+</body>
+</html>
