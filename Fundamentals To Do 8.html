@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentals To Do 8</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Fundamentals To Do 8</h1>
+
+    <h2>Gaming Fun(damentals)</h2>
+    <button onclick="playFives(5)">Play Fives (5 rolls)</button>
+    <button onclick="playStatistics()">Play Statistics</button>
+    <button onclick="playStatistics2()">Play Statistics 2</button>
+    <button onclick="playStatistics3(10)">Play Statistics 3 (10 rolls)</button>
+    <button onclick="playStatistics4(10)">Play Statistics 4 (10 rolls)</button>
+    
+    <h2>Statistics Until Doubles</h2>
+    <button onclick="trackStatisticsUntilDoubles()">Track Statistics Until Doubles</button>
+
+    <h2>Claire is Where?</h2>
+    <button onclick="reset()">Reset</button>
+    <button onclick="moveBy(1, -2)">Move By (1, -2)</button>
+    <button onclick="moveBy(3, 1)">Move By (3, 1)</button>
+    <button onclick="displayLocation()">Show Location</button>
+    <button onclick="displayDistanceFromHome()">Show Distance from Home</button>
+
+    <h2>Results</h2>
+    <pre id="results"></pre>
+
+    <script>
+        // Gaming Fun(damentals)
+        function rollOne() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        function playFives(num) {
+            for (let i = 0; i < num; i++) {
+                const roll = rollOne();
+                logResult(roll);
+                if (roll === 5) {
+                    logResult("That’s good luck!");
+                }
+            }
+        }
+
+        function playStatistics() {
+            let rolls = [];
+            for (let i = 0; i < 8; i++) {
+                rolls.push(rollOne());
+            }
+            logStatistics(rolls);
+        }
+
+        function playStatistics2() {
+            let rolls = [];
+            for (let i = 0; i < 8; i++) {
+                rolls.push(rollOne());
+            }
+            logStatistics(rolls, true);
+        }
+
+        function playStatistics3(num) {
+            let rolls = [];
+            for (let i = 0; i < num; i++) {
+                rolls.push(rollOne());
+            }
+            logStatistics(rolls);
+        }
+
+        function playStatistics4(num) {
+            let rolls = [];
+            for (let i = 0; i < num; i++) {
+                rolls.push(rollOne());
+            }
+            const total = rolls.reduce((sum, roll) => sum + roll, 0);
+            const average = total / rolls.length;
+            logResult(`Average roll: ${average}`);
+        }
+
+        function logStatistics(rolls, showTotal = false) {
+            const min = Math.min(...rolls);
+            const max = Math.max(...rolls);
+            const total = rolls.reduce((sum, roll) => sum + roll, 0);
+            let message = `Lowest roll: ${min}, Highest roll: ${max}`;
+            if (showTotal) {
+                message += `, Total sum: ${total}`;
+            }
+            logResult(message);
+        }
+
+        function logResult(message) {
+            document.getElementById('results').innerText += message + '\n';
+        }
+
+        // Statistics Until Doubles
+        function rollTwentySidedDie() {
+            return Math.floor(Math.random() * 20) + 1;
+        }
+
+        function trackStatisticsUntilDoubles() {
+            let rolls = [];
+            let lastRoll = null;
+            let count = 0;
+
+            while (true) {
+                const roll = rollTwentySidedDie();
+                rolls.push(roll);
+                count++;
+
+                if (roll === lastRoll) {
+                    break;
+                }
+                lastRoll = roll;
+            }
+
+            logStatistics(rolls);
+        }
+
+        // Claire is Where?
+        let claire = { x: 0, y: 0 };
+
+        function reset() {
+            claire = { x: 0, y: 0 };
+            logResult("Claire is back at home (0, 0).");
+        }
+
+        function moveBy(xOffset, yOffset) {
+            claire.x += xOffset;
+            claire.y += yOffset;
+        }
+
+        function displayLocation() {
+            logResult(`Claire's location: (${claire.x}, ${claire.y})`);
+        }
+
+        function displayDistanceFromHome() {
+            const distance = Math.sqrt(claire.x ** 2 + claire.y ** 2);
+            logResult(`Distance from home: ${distance}`);
+        }
+    </script>
+</body>
+</html>
