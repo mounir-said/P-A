@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract-o-matic and Most Significant Digit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Extract-o-matic and Most Significant Digit</h1>
+    
+    <h2>Extract Digit</h2>
+    <pre id="extractDigitResult"></pre>
+
+    <h2>Most Significant Digit</h2>
+    <pre id="mostSignificantDigitResult"></pre>
+
+    <script>
+        // Extract Digit Function
+        function extractDigit(num, digitNum) {
+            // Handle negative numbers
+            if (num < 0) num = -num;
+
+            // Convert the number to string to handle digit extraction
+            const numStr = num.toString();
+            const isNegativeDigitNum = digitNum < 0;
+            const absDigitNum = Math.abs(digitNum);
+
+            if (!isNegativeDigitNum) {
+                // Extract from integer part
+                if (absDigitNum < numStr.length) {
+                    return parseInt(numStr[numStr.length - 1 - absDigitNum]);
+                } else {
+                    return 0; // Out of bounds
+                }
+            } else {
+                // Extract from decimal part
+                const decimalIndex = numStr.indexOf('.');
+                if (decimalIndex !== -1) {
+                    const decimalPart = numStr.slice(decimalIndex + 1);
+                    if (absDigitNum - 1 < decimalPart.length) {
+                        return parseInt(decimalPart[absDigitNum - 1]);
+                    } else {
+                        return 0; // Out of bounds
+                    }
+                }
+                return 0; // No decimal part
+            }
+        }
+
+        // Most Significant Digit Function
+        function mostSignificantDigit(num) {
+            // Handle negative numbers
+            if (num < 0) num = -num;
+
+            // Handle zero case
+            if (num === 0) return 0;
+
+            // Find the most significant digit
+            while (num >= 10) {
+                num = Math.floor(num / 10);
+            }
+            return num; // Now num is the most significant digit
+        }
+
+        // Display results
+        document.getElementById('extractDigitResult').textContent = `Extracted digit from 1824,2: ${extractDigit(1824, 2)}\n` +
+                                                                   `Extracted digit from 1824,0: ${extractDigit(1824, 0)}\n` +
+                                                                   `Extracted digit from 1824,7: ${extractDigit(1824, 7)}\n` +
+                                                                   `Extracted digit from 123.45,-1: ${extractDigit(123.45, -1)}`;
+        
+        document.getElementById('mostSignificantDigitResult').textContent = `Most significant digit of 12345: ${mostSignificantDigit(12345)}\n` +
+                                                                          `Most significant digit of 67.89: ${mostSignificantDigit(67.89)}\n` +
+                                                                          `Most significant digit of 0.00987: ${mostSignificantDigit(0.00987)}`;
+    </script>
+</body>
+</html>
