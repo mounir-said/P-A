@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions - Fundamentals To Do 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .result {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Functions - Fundamentals To Do 2</h1>
+
+    <div class="result">
+        <button onclick="runCountdown()">Countdown</button>
+        <div id="countdownResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runPrintAndReturn()">Print and Return</button>
+        <div id="printAndReturnResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runFirstPlusLength()">First Plus Length</button>
+        <div id="firstPlusLengthResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runValuesGreaterThanSecond()">Values Greater than Second</button>
+        <div id="valuesGreaterThanSecondResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runValuesGreaterThanSecondGeneralized()">Values Greater than Second (Generalized)</button>
+        <div id="valuesGreaterThanSecondGeneralizedResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runThisLengthThatValue()">This Length, That Value</button>
+        <div id="thisLengthThatValueResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runFitTheFirstValue()">Fit the First Value</button>
+        <div id="fitTheFirstValueResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runFahrenheitToCelsius()">Fahrenheit to Celsius</button>
+        <div id="fahrenheitToCelsiusResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runCelsiusToFahrenheit()">Celsius to Fahrenheit</button>
+        <div id="celsiusToFahrenheitResult"></div>
+    </div>
+
+    <script>
+        // Countdown
+        function runCountdown() {
+            const number = 10; // Example input
+            const result = countdown(number);
+            document.getElementById('countdownResult').innerText = 'Countdown: ' + result;
+        }
+
+        function countdown(num) {
+            const arr = [];
+            for (let i = num; i >= 0; i--) {
+                arr.push(i);
+            }
+            return arr + ' (Array Length: ' + arr.length + ')';
+        }
+
+        // Print and Return
+        function runPrintAndReturn() {
+            const result = printAndReturn([5, 10]);
+            document.getElementById('printAndReturnResult').innerText = 'Return Value: ' + result;
+        }
+
+        function printAndReturn(arr) {
+            console.log('First Value: ', arr[0]);
+            return arr[1];
+        }
+
+        // First Plus Length
+        function runFirstPlusLength() {
+            const result = firstPlusLength([1, 2, 3, 4]);
+            document.getElementById('firstPlusLengthResult').innerText = 'Sum: ' + result;
+        }
+
+        function firstPlusLength(arr) {
+            return arr[0] + arr.length;
+        }
+
+        // Values Greater than Second
+        function runValuesGreaterThanSecond() {
+            const result = valuesGreaterThanSecond([1, 3, 5, 7, 9, 13]);
+            document.getElementById('valuesGreaterThanSecondResult').innerText = 'Result: ' + result;
+        }
+
+        function valuesGreaterThanSecond(arr) {
+            const secondValue = arr[1];
+            const result = arr.filter(value => value > secondValue);
+            return result + ' (Count: ' + result.length + ')';
+        }
+
+        // Values Greater than Second (Generalized)
+        function runValuesGreaterThanSecondGeneralized() {
+            const result = valuesGreaterThanSecondGeneralized([10, 5, 8, 2]);
+            document.getElementById('valuesGreaterThanSecondGeneralizedResult').innerText = 'Result: ' + result;
+        }
+
+        function valuesGreaterThanSecondGeneralized(arr) {
+            if (arr.length < 2) {
+                return 'Array too short';
+            }
+            const secondValue = arr[1];
+            const result = arr.filter(value => value > secondValue);
+            return result + ' (Count: ' + result.length + ')';
+        }
+
+        // This Length, That Value
+        function runThisLengthThatValue() {
+            const result = thisLengthThatValue(5, 7);
+            document.getElementById('thisLengthThatValueResult').innerText = 'Array: ' + result;
+        }
+
+        function thisLengthThatValue(num1, num2) {
+            const arr = Array(num1).fill(num2);
+            if (num1 === num2) {
+                console.log('Jinx!');
+            }
+            return arr;
+        }
+
+        // Fit the First Value
+        function runFitTheFirstValue() {
+            const result = fitTheFirstValue([4, 2, 3]);
+            document.getElementById('fitTheFirstValueResult').innerText = 'Result: ' + result;
+        }
+
+        function fitTheFirstValue(arr) {
+            if (arr[0] > arr.length) {
+                return 'Too big!';
+            } else if (arr[0] < arr.length) {
+                return 'Too small!';
+            } else {
+                return 'Just right!';
+            }
+        }
+
+        // Fahrenheit to Celsius
+        function runFahrenheitToCelsius() {
+            const result = fahrenheitToCelsius(98);
+            document.getElementById('fahrenheitToCelsiusResult').innerText = 'Celsius: ' + result;
+        }
+
+        function fahrenheitToCelsius(fDegrees) {
+            return ((fDegrees - 32) * 5/9).toFixed(2);
+        }
+
+        // Celsius to Fahrenheit
+        function runCelsiusToFahrenheit() {
+            const result = celsiusToFahrenheit(37);
+            document.getElementById('celsiusToFahrenheitResult').innerText = 'Fahrenheit: ' + result;
+        }
+
+        function celsiusToFahrenheit(cDegrees) {
+            return (cDegrees * 9/5 + 32).toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
