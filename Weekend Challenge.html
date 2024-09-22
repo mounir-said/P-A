@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fill-in-the-Blank Quiz Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        #results {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Fill-in-the-Blank Quiz!</h1>
+    <button onclick="startQuiz()">Start Quiz</button>
+    
+    <div id="results"></div>
+
+    <script>
+        const questions = [
+            {
+                question: "The capital of France is _____.",
+                answer: "Paris"
+            },
+            {
+                question: "The largest planet in our solar system is _____.",
+                answer: "Jupiter"
+            },
+            {
+                question: "The author of 'Hamlet' is _____.",
+                answer: "Shakespeare"
+            },
+            {
+                question: "Water freezes at ____ degrees Celsius.",
+                answer: "0"
+            },
+            {
+                question: "The smallest prime number is _____.",
+                answer: "2"
+            }
+        ];
+
+        function startQuiz() {
+            const username = prompt("Welcome! What is your name?");
+            if (!username) return; // Exit if Cancel is pressed
+
+            let correctAnswers = 0;
+            let totalQuestions = questions.length;
+
+            for (let i = 0; i < totalQuestions; i++) {
+                const userAnswer = prompt(questions[i].question);
+                
+                if (userAnswer === null || userAnswer.toUpperCase() === 'Q') {
+                    break; // Exit the quiz if Cancel or "Q" is pressed
+                }
+
+                if (userAnswer.trim().toLowerCase() === questions[i].answer.toLowerCase()) {
+                    correctAnswers++;
+                }
+            }
+
+            displayResults(username, totalQuestions, correctAnswers);
+        }
+
+        function displayResults(username, totalQuestions, correctAnswers) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <h2>Quiz Completed!</h2>
+                <p>Username: ${username}</p>
+                <p>Total Questions: ${totalQuestions}</p>
+                <p>Questions Answered Correctly: ${correctAnswers}</p>
+            `;
+            resultsDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
