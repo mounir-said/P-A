@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions - Fundamentals To Do 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .result {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Functions - Fundamentals To Do 3</h1>
+
+    <div class="result">
+        <button onclick="runBiggieSize()">Biggie Size</button>
+        <div id="biggieSizeResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runPrintLowReturnHigh()">Print Low, Return High</button>
+        <div id="printLowReturnHighResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runPrintOneReturnAnother()">Print One, Return Another</button>
+        <div id="printOneReturnAnotherResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runDoubleVision()">Double Vision</button>
+        <div id="doubleVisionResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runCountPositives()">Count Positives</button>
+        <div id="countPositivesResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runEvensAndOdds()">Evens and Odds</button>
+        <div id="evensAndOddsResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runIncrementTheSeconds()">Increment the Seconds</button>
+        <div id="incrementTheSecondsResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runPreviousLengths()">Previous Lengths</button>
+        <div id="previousLengthsResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runAddSevenToMost()">Add Seven to Most</button>
+        <div id="addSevenToMostResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runReverseArray()">Reverse Array</button>
+        <div id="reverseArrayResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runOutlookNegative()">Outlook: Negative</button>
+        <div id="outlookNegativeResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runAlwaysHungry()">Always Hungry</button>
+        <div id="alwaysHungryResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runSwapTowardTheCenter()">Swap Toward the Center</button>
+        <div id="swapTowardTheCenterResult"></div>
+    </div>
+
+    <div class="result">
+        <button onclick="runScaleTheArray()">Scale the Array</button>
+        <div id="scaleTheArrayResult"></div>
+    </div>
+
+    <script>
+        // Biggie Size
+        function runBiggieSize() {
+            const result = biggieSize([-1, 3, 5, -5]);
+            document.getElementById('biggieSizeResult').innerText = 'Result: ' + result;
+        }
+
+        function biggieSize(arr) {
+            return arr.map(val => val > 0 ? "big" : val);
+        }
+
+        // Print Low, Return High
+        function runPrintLowReturnHigh() {
+            const result = printLowReturnHigh([1, -3, 5, 7]);
+            document.getElementById('printLowReturnHighResult').innerText = 'Return Value: ' + result;
+        }
+
+        function printLowReturnHigh(arr) {
+            const low = Math.min(...arr);
+            const high = Math.max(...arr);
+            console.log('Lowest Value: ', low);
+            return high;
+        }
+
+        // Print One, Return Another
+        function runPrintOneReturnAnother() {
+            const result = printOneReturnAnother([2, 1, 4, 7]);
+            document.getElementById('printOneReturnAnotherResult').innerText = 'Return Value: ' + result;
+        }
+
+        function printOneReturnAnother(arr) {
+            console.log('Second-to-last value: ', arr[arr.length - 2]);
+            return arr.find(val => val % 2 !== 0);
+        }
+
+        // Double Vision
+        function runDoubleVision() {
+            const result = doubleVision([1, 2, 3]);
+            document.getElementById('doubleVisionResult').innerText = 'Result: ' + result;
+        }
+
+        function doubleVision(arr) {
+            return arr.map(val => val * 2);
+        }
+
+        // Count Positives
+        function runCountPositives() {
+            const result = countPositives([-1, 1, 1, 1]);
+            document.getElementById('countPositivesResult').innerText = 'Result: ' + result;
+        }
+
+        function countPositives(arr) {
+            const positiveCount = arr.filter(val => val > 0).length;
+            arr[arr.length - 1] = positiveCount;
+            return arr;
+        }
+
+        // Evens and Odds
+        function runEvensAndOdds() {
+            const result = evensAndOdds([1, 3, 5, 2, 4, 6]);
+            document.getElementById('evensAndOddsResult').innerText = 'Check console for output';
+        }
+
+        function evensAndOdds(arr) {
+            for (let i = 2; i < arr.length; i++) {
+                if (arr[i] % 2 === 0 && arr[i - 1] % 2 === 0 && arr[i - 2] % 2 === 0) {
+                    console.log('Even more so!');
+                } else if (arr[i] % 2 !== 0 && arr[i - 1] % 2 !== 0 && arr[i - 2] % 2 !== 0) {
+                    console.log('That’s odd!');
+                }
+            }
+        }
+
+        // Increment the Seconds
+        function runIncrementTheSeconds() {
+            const result = incrementTheSeconds([1, 2, 3, 4, 5]);
+            document.getElementById('incrementTheSecondsResult').innerText = 'Result: ' + result;
+        }
+
+        function incrementTheSeconds(arr) {
+            return arr.map((val, idx) => idx % 2 === 1 ? val + 1 : val);
+        }
+
+        // Previous Lengths
+        function runPreviousLengths() {
+            const result = previousLengths(["hello", "world", "JavaScript"]);
+            document.getElementById('previousLengthsResult').innerText = 'Result: ' + result;
+        }
+
+        function previousLengths(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                arr[i] = arr[i - 1].length;
+            }
+            return arr;
+        }
+
+        // Add Seven to Most
+        function runAddSevenToMost() {
+            const result = addSevenToMost([1, 2, 3, 4, 5]);
+            document.getElementById('addSevenToMostResult').innerText = 'Result: ' + result;
+        }
+
+        function addSevenToMost(arr) {
+            return arr.slice(1).map(val => val + 7);
+        }
+
+        // Reverse Array
+        function runReverseArray() {
+            const result = reverseArray([3, 1, 6, 4, 2]);
+            document.getElementById('reverseArrayResult').innerText = 'Result: ' + result;
+        }
+
+        function reverseArray(arr) {
+            return arr.reverse();
+        }
+
+        // Outlook: Negative
+        function runOutlookNegative() {
+            const result = outlookNegative([1, -3, 5]);
+            document.getElementById('outlookNegativeResult').innerText = 'Result: ' + result;
+        }
+
+        function outlookNegative(arr) {
+            return arr.map(val => val > 0 ? -val : val);
+        }
+
+        // Always Hungry
+        function runAlwaysHungry() {
+            alwaysHungry(["pizza", "food", "apple", "food"]);
+            document.getElementById('alwaysHungryResult').innerText = 'Check console for output';
+        }
+
+        function alwaysHungry(arr) {
+            const foodFound = arr.some(item => item === "food");
+            if (foodFound) {
+                arr.forEach(item => item === "food" && console.log("yummy"));
+            } else {
+                console.log("I'm hungry");
+            }
+        }
+
+        // Swap Toward the Center
+        function runSwapTowardTheCenter() {
+            const result = swapTowardTheCenter([true, 42, "Ada", 2, "pizza"]);
+            document.getElementById('swapTowardTheCenterResult').innerText = 'Result: ' + result;
+        }
+
+        function swapTowardTheCenter(arr) {
+            for (let i = 0; i < arr.length / 2; i += 2) {
+                [arr[i], arr[arr.length - 1 - i]] = [arr[arr.length - 1 - i], arr[i]];
+            }
+            return arr;
+        }
+
+        // Scale the Array
+        function runScaleTheArray() {
+            const result = scaleTheArray([1, 2, 3], 3);
+            document.getElementById('scaleTheArrayResult').innerText = 'Result: ' + result;
+        }
+
+        function scaleTheArray(arr, num) {
+            return arr.map(val => val * num);
+        }
+    </script>
+
+</body>
+</html>
