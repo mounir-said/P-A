@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>To Do 3</h1>
+    
+    <h2>Rockin’ the Dojo Sweatshirt</h2>
+    <pre id="sweatshirtPricingResult"></pre>
+
+    <h2>Clock Hand Angles, Revisited</h2>
+    <pre id="clockHandAnglesResult"></pre>
+
+    <script>
+        // Sweatshirt Pricing
+        function sweatshirtPricing(num) {
+            const price = 20;
+            let discount = 0;
+
+            if (num === 2) {
+                discount = 0.09; // 9%
+            } else if (num === 3) {
+                discount = 0.19; // 19%
+            } else if (num >= 4) {
+                discount = 0.35; // 35%
+            }
+
+            const totalCost = num * price * (1 - discount);
+            return Math.ceil(totalCost); // Round up to the nearest dollar
+        }
+
+        // Clock Hand Angles, Revisited
+        function clockHandAngles(seconds) {
+            const hour = Math.floor((360 / 43200) * seconds); // Full rotation every 12 hours
+            const minute = Math.floor((360 / 3600) * (seconds % 3600)); // Full rotation every 60 minutes
+            const second = Math.floor((360 / 60) * (seconds % 60)); // Full rotation every 60 seconds
+
+            return `Hour hand: ${hour} degs. Minute hand: ${minute} degs. Second hand: ${second} degs.`;
+        }
+
+        // Display results
+        document.getElementById('sweatshirtPricingResult').textContent = `Total cost for 3 sweatshirts: $${sweatshirtPricing(3)}`;
+        document.getElementById('clockHandAnglesResult').textContent = clockHandAngles(119730.5);
+    </script>
+</body>
+</html>
