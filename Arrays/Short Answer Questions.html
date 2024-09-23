@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short Answer Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #555;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #333;
+        }
+        hr {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Short Answer Questions</h1>
+
+    <div class="container">
+        <h2>1. What is an array?</h2>
+        <p>An array is a data structure that holds a collection of elements in a specific order. Each element is stored at a specific index, allowing for efficient access and modification.</p>
+
+        <hr>
+
+        <h2>2. What types of values can be held in an array?</h2>
+        <p>Arrays can hold any data type, such as numbers, strings, booleans, objects, functions, and even other arrays.</p>
+
+        <hr>
+
+        <h2>3. What happens if you try to contain values of different data types in an array?</h2>
+        <p>In JavaScript, arrays are dynamic and can contain values of different data types without issues. For example, an array can hold both strings and numbers simultaneously.</p>
+
+        <hr>
+
+        <h2>4. What is the index of the first element in an array?</h2>
+        <p>The index of the first element in an array is 0.</p>
+
+        <hr>
+
+        <h2>5. What is the index of the last element in an array?</h2>
+        <p>The index of the last element is <code>array.length - 1</code>.</p>
+
+        <hr>
+
+        <h2>6. If you control an array, what is the easiest way to determine the number of values?</h2>
+        <p>The easiest way to determine the number of values is by using the <code>length</code> property of the array, which returns the total number of elements.</p>
+
+        <hr>
+
+        <h2>7. When would the above method not work well, and what must you do in that case?</h2>
+        <p>The <code>length</code> property may not work well if the array has gaps (sparse arrays). In such cases, you must iterate through the array to count only the defined elements.</p>
+
+        <hr>
+
+        <h2>8. What are two ways to make an array one element longer?</h2>
+        <p>
+            1. Use the <code>push()</code> method to append an element.<br>
+            2. Assign a value at the next index, e.g., <code>arr[arr.length] = value;</code>.
+        </p>
+
+        <hr>
+
+        <h2>9. What are two ways to make an array two elements shorter?</h2>
+        <p>
+            1. Use the <code>pop()</code> method twice.<br>
+            2. Use the <code>splice()</code> method to remove the last two elements, e.g., <code>arr.splice(-2, 2);</code>.
+        </p>
+
+        <hr>
+
+        <h2>10. What is the upper limit on the number of values an array can hold?</h2>
+        <p>JavaScript arrays are limited by the maximum length, which is <code>2^32 - 1</code> (approximately 4.29 billion elements).</p>
+
+        <hr>
+
+        <h2>11. When working with arrays, does working “in-place” really matter? If so, when and why?</h2>
+        <p>Yes, working "in-place" can matter for memory efficiency. It is important when working with large arrays or performance-sensitive applications because creating new arrays for every operation may use more memory and slow down performance.</p>
+
+        <hr>
+
+        <h2>12. Which values are “falsy” in JavaScript, and what does “falsy” mean anyway?</h2>
+        <p>Falsy values are values that are considered <code>false</code> when evaluated in a Boolean context. The falsy values in JavaScript are: <code>false</code>, <code>0</code>, <code>""</code> (empty string), <code>null</code>, <code>undefined</code>, and <code>NaN</code>. "Falsy" means that these values will return <code>false</code> when used in conditions or Boolean expressions.</p>
+
+        <hr>
+
+        <h2>13. What does “passing by reference” mean?</h2>
+        <p>"Passing by reference" means that when an object (such as an array or another complex data type) is passed to a function, the function receives a reference to the original object. Changes made to the object inside the function will affect the original object.</p>
+
+    </div>
+
+</body>
+</html>
