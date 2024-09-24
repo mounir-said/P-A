@@ -111,4 +111,86 @@ function findMode(arr) {
 // (Second: memory constraint - no extra array)
 function findModeNoExtraMemory(arr) {
   let mode = arr[0];
-  let maxCount = 0
+  let maxCount = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+      let count = 1;
+      for (let j = i + 1; j < arr.length; j++) {
+          if (arr[i] === arr[j]) {
+              count++;
+          }
+      }
+      if (count > maxCount) {
+          maxCount = count;
+          mode = arr[i];
+      }
+  }
+  return mode;
+}
+
+// Example usage:
+console.log("Mode:");
+const arr3 = [1, 2, 2, 3, 3, 3, 4];
+console.log(findMode(arr3));  // Output: 3
+console.log(findModeNoExtraMemory(arr3));  // Output: 3
+console.log("---------");
+
+
+// 4. Buffer Copy
+
+// (First: basic buffer copy)
+function arrBufferCopy(sourceArr, destArr, sourceStartIdx, destStartIdx, numVals) {
+  for (let i = 0; i < numVals; i++) {
+      if (sourceStartIdx + i < sourceArr.length && destStartIdx + i < destArr.length) {
+          destArr[destStartIdx + i] = sourceArr[sourceStartIdx + i];
+      }
+  }
+}
+
+// (Second: with wraparound)
+function arrBufferCopyWrap(sourceArr, destArr, sourceStartIdx, destStartIdx, numVals) {
+  for (let i = 0; i < numVals; i++) {
+      const sourceIndex = (sourceStartIdx + i) % sourceArr.length;
+      const destIndex = (destStartIdx + i) % destArr.length;
+      destArr[destIndex] = sourceArr[sourceIndex];
+  }
+}
+
+// (Third: limit numVals to destArr.length)
+function arrBufferCopyLimited(sourceArr, destArr, sourceStartIdx, destStartIdx, numVals) {
+  const limit = Math.min(numVals, destArr.length);
+  arrBufferCopyWrap(sourceArr, destArr, sourceStartIdx, destStartIdx, limit);
+}
+
+// (Fourth: sourceArr = destArr, non-wrap)
+function arrBufferCopySameArray(sourceArr, destArr, sourceStartIdx, destStartIdx, numVals) {
+  if (sourceArr === destArr) {
+      const temp = sourceArr.slice(sourceStartIdx, sourceStartIdx + numVals);
+      for (let i = 0; i < numVals; i++) {
+          if (destStartIdx + i < destArr.length) {
+              destArr[destStartIdx + i] = temp[i];
+          }
+      }
+  } else {
+      arrBufferCopyWrap(sourceArr, destArr, sourceStartIdx, destStartIdx, numVals);
+  }
+}
+
+// Example usage:
+console.log("Buffer Copy:");
+const sourceArr = [1, 2, 3, 4, 5];
+let destArr = [0, 0, 0, 0, 0];
+arrBufferCopy(sourceArr, destArr, 1, 2, 3);
+console.log(destArr);  // Output: [0, 0, 2, 3, 4]
+
+destArr = [0, 0, 0, 0, 0];
+arrBufferCopyWrap(sourceArr, destArr, 3, 1, 5);
+console.log(destArr);  // Output: [0, 4, 5, 1, 2]
+
+destArr = [0, 0, 0, 0, 0];
+arrBufferCopyLimited(sourceArr, destArr, 0, 0, 6);
+console.log(destArr);  // Output: [1, 2, 3, 4, 5]
+
+let sameArr = [1, 2, 3, 4, 5];
+arrBufferCopySameArray(sameArr, sameArr, 1, 3, 2);
+console.log(sameArr);  // Output: [1, 2, 3, 2, 3]
